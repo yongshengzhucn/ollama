@@ -37,12 +37,12 @@ func NewHistory() (*History, error) {
 }
 
 func (h *History) Init() error {
-	home, err := os.UserHomeDir()
+	cache, err := os.UserCacheDir()
 	if err != nil {
 		return err
 	}
 
-	path := filepath.Join(home, ".ollama", "history")
+	path := filepath.Join(cache, "Ollama", "history")
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		return err
 	}

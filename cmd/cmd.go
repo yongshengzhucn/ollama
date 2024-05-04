@@ -907,13 +907,13 @@ func RunServer(cmd *cobra.Command, _ []string) error {
 }
 
 func initializeKeypair() error {
-	home, err := os.UserHomeDir()
+	config, err := os.UserConfigDir()
 	if err != nil {
 		return err
 	}
 
-	privKeyPath := filepath.Join(home, ".ollama", "id_ed25519")
-	pubKeyPath := filepath.Join(home, ".ollama", "id_ed25519.pub")
+	privKeyPath := filepath.Join(config, "Ollama", "id_ed25519")
+	pubKeyPath := filepath.Join(config, "Ollama", "id_ed25519.pub")
 
 	_, err = os.Stat(privKeyPath)
 	if os.IsNotExist(err) {
@@ -967,7 +967,6 @@ func waitForServer(ctx context.Context, client *api.Client) error {
 			}
 		}
 	}
-
 }
 
 func checkServerHeartbeat(cmd *cobra.Command, _ []string) error {

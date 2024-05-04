@@ -18,12 +18,12 @@ import (
 const defaultPrivateKey = "id_ed25519"
 
 func keyPath() (string, error) {
-	home, err := os.UserHomeDir()
+	config, err := os.UserConfigDir()
 	if err != nil {
 		return "", err
 	}
 
-	return filepath.Join(home, ".ollama", defaultPrivateKey), nil
+	return filepath.Join(config, "Ollama", defaultPrivateKey), nil
 }
 
 func GetPublicKey() (string, error) {
